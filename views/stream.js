@@ -28,3 +28,9 @@ function start() {
   };
   navigator.mediaDevices.getUserMedia(constraints).then(gotStream).catch(handleError);
 }
+
+const videoElement = document.querySelector('video');
+
+socket.on('live-stream', (stream) => {
+  videoElement.srcObject = stream;
+})
