@@ -13,6 +13,7 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+
 app.get("/stream", (req, res) => {
   res.render("stream");
 });
