@@ -1,5 +1,9 @@
-const socket = io('/stream')
+let socket = io('/')
+var a = 'yes'
+socket.on("connect", () => {
+  alert(socket); // true
 
+});
 const btntest = document.querySelector('#test')
 
 btntest.addEventListener('click', function() {
@@ -8,7 +12,7 @@ btntest.addEventListener('click', function() {
 
 const p = document.querySelector('p')
 
-socket.on('test', (a) => {
+socket.on('abc', (a) => {
   console.log(a)
-  p.innerHTML = a
+  p.innerText = a
 })

@@ -2,7 +2,8 @@ const express = require("express");
 const ejs = require("ejs");
 const app = express();
 const server = require("http").Server(app);
-const io = require("socket.io")(server);
+const { Server } = require("socket.io");
+const io = new Server(server);
 
 app.engine("html", ejs.renderFile);
 app.set("view engine", "ejs");
@@ -22,7 +23,9 @@ app.get("/watch", (req, res) => {
 
 io.on("connection", (socket) => {
   console.log(`Made socket connection with ${socket.id}}`);
-
+  socket.on('test', (a) => {
+    socket.emit('abc', a)
+  })
 });
-
+;
 server.listen(process.env.PORT || 3030);
