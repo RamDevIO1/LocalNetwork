@@ -12,12 +12,12 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/stream/:id", (req, res) => {
-  res.render("stream", { Id: req.params.id });
+app.get("/stream", (req, res) => {
+  res.render("stream");
 });
 
-app.get("/watch/:id", (req, res) => {
-  res.render("watch", { Id: req.params.id });
+app.get("/watch", (req, res) => {
+  res.render("watch");
 });
 
 io.on("connection", (socket) => {
