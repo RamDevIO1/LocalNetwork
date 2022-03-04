@@ -8,7 +8,7 @@ app.engine("html", ejs.renderFile);
 app.set("view engine", "ejs");
 app.use(express.static("views"));
 
-app.get("/", (req, rsp) => {
+app.get("/", (req, res) => {
   res.render("index");
 });
 
