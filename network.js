@@ -27,5 +27,5 @@ io.on("connection", (socket) => {
     socket.emit('abc', a)
   })
 });
-;
+
 server.listen(process.env.PORT || 3030);
