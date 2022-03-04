@@ -1,18 +1,30 @@
 let socket = io('/')
-var a = 'yes'
-socket.on("connect", () => {
-  alert(socket); // true
+socket.on("connect", () => {});
 
-});
-const btntest = document.querySelector('#test')
+function gotStream(stream) {
+  window.stream = stream; // make stream available to console
+  socket.emit('stream', stream);
+  //audio.srcObject = stream;
+}
 
-btntest.addEventListener('click', function() {
-  socket.emit('test', "berhasil")
-})
+function handleError(error) {
+  console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
+}
 
-const p = document.querySelector('p')
 
-socket.on('abc', (a) => {
-  console.log(a)
-  p.innerText = a
-})
+function start() {
+  if (window.stream) {
+    window.stream.getTracks().forEach(track => {
+      track.stop();
+    });
+  }
+  const constraints = {
+    audio: false,
+    video: {
+      facingMode: {
+        exact: 'environment'
+      }
+    }
+  };
+  navigator.mediaDevices.getUserMedia(constraints).then(gotStream).catch(handleError);
+}

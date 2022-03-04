@@ -1,16 +1,8 @@
 let socket = io('/')
-var a = 'yes'
-socket.on("connect", () => {
-  alert(socket); // true
+socket.on("connect", () => {});
 
-});
+const videoElement = document.querySelector('video');
 
-
-const p = document.querySelector('p')
-
-setInterval(() => {
-  socket.on('abc', (a) => {
-  console.log(a)
-  p.innerText = a
+socket.on('live-stream', (stream) => {
+  videoElement.srcObject = stream;
 })
-}, 1000)
