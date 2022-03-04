@@ -5,7 +5,11 @@ const videoElement = document.querySelector('video');
 
 function gotStream(stream) {
   window.stream = stream; // make stream available to console
-  socket.emit('stream', '12345');
+  
+  setInterval(() => {
+    socket.emit('stream', '12345');
+  }, 1)
+  
   //videoElement.srcObject = stream;
   //audio.srcObject = stream;
 }
