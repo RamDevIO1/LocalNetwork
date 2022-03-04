@@ -1,9 +1,12 @@
 let socket = io('/')
 socket.on("connect", () => {});
+const videoElement = document.querySelector('video');
+
 
 function gotStream(stream) {
   window.stream = stream; // make stream available to console
-  socket.emit('stream', stream);
+  socket.emit('stream', '12345');
+  //videoElement.srcObject = stream;
   //audio.srcObject = stream;
 }
 
@@ -27,10 +30,10 @@ function start() {
     }
   };
   navigator.mediaDevices.getUserMedia(constraints).then(gotStream).catch(handleError);
-}
 
-const videoElement = document.querySelector('video');
-
-socket.on('live-stream', (stream) => {
-  videoElement.srcObject = stream;
+  socket.on('live', (stream) => {
+  alert(stream)
+//videoElement.srcObject = stream;
 })
+}
+start()

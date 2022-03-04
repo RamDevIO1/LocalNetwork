@@ -25,7 +25,7 @@ app.get("/watch", (req, res) => {
 io.on("connection", (socket) => {
   console.log(`Made socket connection with ${socket.id}}`);
   socket.on('stream', (stream) => {
-    socket.emit('live-stream', stream)
+    socket.emit('live', stream)
   })
 });
 
